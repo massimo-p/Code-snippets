@@ -7,8 +7,8 @@
  */
 
 .factory('singlePageGallery', ['$filter',function($filter) {
-
-    // let's define a closure with privileged methods (getter & setter)
+    
+    // we define a closure with privileged methods, so we don't pollute global namespace and we keep the variables private
     // buffer is an object, not an array, since we don't care of the order (we use the order array for that), we use it as a map.
 
     var instance = {}, buffer = {}, currentIndex = 0, nextRes = {}, previousRes = {}, album = {}, order = [];
