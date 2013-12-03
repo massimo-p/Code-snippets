@@ -140,8 +140,8 @@
                             $location.path('/picture/' + id);
                         }
 
-                        // invoke angular $apply, through a safe method to avoid cuncurrency issues (invoke a $digest while another is
-                        // in progress raise an exception), since we are outside the angular context (so trigger a digest to be sure binding are correct)
+                        // invoke angular $apply, through a safe method to avoid cuncurrency issues (invoking a $digest while another is
+                        // in progress raises an exception), since we are outside the angular context (so trigger a digest to be sure binding are correct)
                         scope.safeApply()
                     },
                     afterClose: function()   // fancybox callback
