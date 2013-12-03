@@ -49,7 +49,8 @@
 
     instance.isConditionViolated = function(action) {
         // check, based on the action, if at least two resources exist before (previous) or after (next) the current one
-        // it's the fetching condition
+        // it's the fetching condition: the pair (pk,type) univocally identifies an element.
+        // key format: "{id}_{type}"
 
         var index1,index2,key1,key2;
         if(action === 'next') // user action
@@ -68,7 +69,7 @@
             }
 
         }
-        else
+        else // previous action
         {
             index1 = currentIndex-1 >= 0  ? currentIndex-1 : order.length-1;
             index2 = currentIndex-2 >= 0  ? currentIndex-2 : order.length-2;
@@ -89,7 +90,7 @@
 
     instance.cacheResources = function(res,prevResources,nextResources, action) {
         var joinedArray = [];
-        joinedArray = joinedArray.concat(prevResources);
+        joinedArray = joinedArray.concat(prevResources); 
         joinedArray.push(res);
         joinedArray = joinedArray.concat(nextResources);
 
@@ -123,7 +124,7 @@
 
     instance.preloadProperImage = function(action) {
 
-        var currentIndex = instance.getCurrentIndex();
+        var currentIndex = this.getCurrentIndex();
         var key,element,index;
         var counter = 1;
         var images = [];
@@ -173,7 +174,9 @@
         return order[currentIndex];
 
     }
-
+    
+    // server pointers
+    
     instance.setServerNext = function(next) {
         if(!instance.isResourceCached(next.id,next.type) || order.length <=5)      // to manage back and forth behaviour
             nextRes = next;
