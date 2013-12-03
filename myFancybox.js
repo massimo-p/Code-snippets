@@ -14,7 +14,7 @@
 
                 // preload the partial
 
-                $.get(EVERSNAP.partials+'/picture_details.html')
+                $.get(MYAPP.partials+'/picture_details.html')
                     .done(function(pictureTemplate) {
                         template = pictureTemplate;
                     }).fail(function(data){
